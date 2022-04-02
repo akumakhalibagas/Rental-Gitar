@@ -1,0 +1,70 @@
+extends ../layout/base 
+block content 
+	section.content-header 
+		h1 
+			| Edit Product
+			small menu for editing product data
+		ol.breadcrumb 
+			li 
+				a(href='#') 
+					i.fa.fa-dashboard
+					| Lainnya  
+			li.active Here 
+	section.content
+		.box
+			.box-header.with-border
+				h3.box-title
+					| Edit Product
+				.box-tools.pull-right
+					button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+						i.fa.fa-minus
+					
+			.box-body
+				form(role='form',method='post' action='/products/edit/#{(id==undefined) ? data.id : id}' enctype='multipart/form-data')
+					.row
+						
+						.col-xs-6
+							.box-body
+								- if (messages.msg_error) 
+									.alert.alert-danger.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-ban
+											| Alert! 
+										| !{messages.msg_error}
+								- if (messages.msg_info) 
+									.alert.alert-success.alert-dismissable 
+										button.close(type='button', data-dismiss='alert', aria-hidden='true') 
+											| ×
+										h4
+											i.icon.fa.fa-check
+											| Success! 
+										| !{messages.msg_info}
+								.form-group
+									label
+										| Gambar
+									input(type='file',name='gambar').form-control
+								.form-group
+									label
+										| Kode
+									input(type='text',value="#{ (kode == undefined)? data.kode : kode}",name='kode',placeholder='Masukkan kode', autofocus).form-control
+								.form-group
+									label
+										| Jenis
+									input(type='text',value="#{ (jenis == undefined) ? data.jenis : jenis }",name='jenis',placeholder='Masukkan jenis').form-control
+								.form-group
+									label
+										| Merk Gitar
+									input(type='text',value="#{ (nama_gitar == undefined) ? data.nama_gitar : nama_gitar }",name='nama_gitar',placeholder='Masukkan Merk Gitar').form-control
+								.form-group
+									label
+										| Kondisi
+									input(type='text',value="#{ (kondisi == undefined) ? data.kondisi : kondisi }",name='kondisi',placeholder='Masukkan kondisi').form-control
+							.box-footer
+								input(type="hidden",name="_method", value="PUT")
+								button(type='submit').btn.btn-primary
+									i.fa.fa-pencil 
+									|  Edit
+								a(href='/products').btn.btn-primary.pull-right
+									| Back

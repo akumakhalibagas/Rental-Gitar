@@ -1,0 +1,61 @@
+extends ../layout/base
+block content
+    section.content-header
+        h1
+            | Tambahkan customer
+            small it all starts here
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    | Lainnya 
+                li.active Here
+    section.content
+        .box
+            .box-header.with-border
+                h3.box-title
+                    | customer
+                .box-tools.pull-right
+                    button(type='button', data-widget='collapse', data-toggle='tooltip',title='collapse').btn.btn-box-tool
+                        i.fa.fa-minus
+
+            .box-body
+                form(role='form',method='post' action='/customer/add')
+                    .row
+
+                        .col-xs-6
+                            .box-body
+                                - if (messages.msg_error)
+                                    .alert.alert-danger.alert-dismissable
+                                        button.close(type='button', data-dismiss='alert', aria-hidden='true')
+                                            | ×
+                                        h4
+                                            i.icon.fa.fa-ban
+                                            | Alert!
+                                        | !{messages.msg_error}
+                                .form-group
+                                    label
+                                        | Nama Customer
+                                    input(type='text',value='#{nama_customer}',name='nama_customer',placeholder='Masukkan Nama', autofocus).form-control
+                                .form-group
+                                    label
+                                        | Kode Gitar
+                                    input(type='text',name='kode_gitar',placeholder='Masukkan Kode Gitar').form-control
+                                .form-group
+                                    label
+                                        | Tanggal Sewa
+                                    input(type='text',name='tanggal_sewa',placeholder='Masukkan Tanggal Sewa').form-control
+                                .form-group
+                                    label
+                                        | Tanggal Kembali
+                                    input(type='text',name='tanggal_kembali',placeholder='Masukkan Tanggal Kembali').form-control
+                                .form-group
+                                    label
+                                        | Harga 
+                                    input(type='text',name='harga',placeholder='Masukkan harga').form-control
+                            .box-footer
+                                button(type='submit').btn.btn-primary
+                                    | Submit
+
+                                a(href='/customer').btn.btn-primary.pull-right
+                                    | Back
